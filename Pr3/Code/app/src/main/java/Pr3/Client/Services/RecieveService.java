@@ -1,7 +1,6 @@
 package Pr3.Client.Services;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -24,8 +23,7 @@ public class RecieveService implements Runnable {
             try {
                 var str = in.readLine();
                 if (str == null) {
-                    System.out.println("RecieveService stopped");
-                    client.stopTransmitter();
+                    System.out.println("RecieveService stopped, where client = " + client.getName());
                     break;
                 }
                 System.out.println(str);

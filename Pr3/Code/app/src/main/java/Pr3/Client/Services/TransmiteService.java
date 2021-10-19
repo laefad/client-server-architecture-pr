@@ -29,8 +29,7 @@ public class TransmiteService implements Runnable {
                 out.write(client.getName() + ": " + str + "\n");
                 out.flush();
             } catch (IOException e) {
-                System.out.println("TransmiteService stopped");
-                client.stopReciever();
+                System.out.println("TransmiteService stopped, where client = " + client.getName());
                 break;
             }
         }

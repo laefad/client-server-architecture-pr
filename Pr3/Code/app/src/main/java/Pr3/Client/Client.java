@@ -29,36 +29,31 @@ public class Client {
         int port;
 
         while (true) {
-            out.write("Enter your name: ");
-            out.flush();
+            System.out.print("Enter your name: ");
             try {
                 name = in.readLine();
                 break;
             } catch (IOException e) {
-                out.write("Bad input\n");
-                out.flush();
+                System.out.println("Bad input");
                 continue;
             }
         }
 
         while (true) {
-            out.write("Enter address [default localhost]: ");
-            out.flush();
+            System.out.print("Enter address [default localhost]: ");
             try {
                 addr = in.readLine();
                 if (addr.equals(""))
                     addr = addrDefault;
                 break;
             } catch (IOException e) {
-                out.write("Bad input\n");
-                out.flush();
+                System.out.println("Bad input");
                 continue;
             }
         }
 
         while (true) {
-            out.write("Enter port [default 8080]: ");
-            out.flush();
+            System.out.print("Enter port [default 8080]: ");
             try {
                 var portStr = in.readLine();
                 if (portStr.equals(""))
@@ -67,12 +62,10 @@ public class Client {
                     port = Integer.parseInt(portStr);
                 break;
             } catch (IOException e) {
-                out.write("Bad input\n");
-                out.flush();
+                System.out.println("Bad input");
                 continue;
             } catch (NumberFormatException e) {
-                out.write("Input value not a number\n");
-                out.flush();
+                System.out.println("Input value not a number");
                 continue;
             }
         }
@@ -113,20 +106,6 @@ public class Client {
         this.transmitter = new Thread(new TransmiteService(this));
         reciever.start();
         transmitter.start();
-    }
-
-    public void stopReciever() throws SecurityException {
-        try {
-            out.close();
-        } catch (IOException e) {}
-        reciever.interrupt();
-    }
-
-    public void stopTransmitter() throws SecurityException {
-        try {
-            in.close();
-        } catch (IOException e) {}
-        transmitter.interrupt();
     }
 
     public static void main(String[] args) {
