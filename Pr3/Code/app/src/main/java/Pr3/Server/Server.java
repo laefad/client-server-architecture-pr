@@ -32,6 +32,8 @@ public class Server {
         this.printer = new Thread(printer);
         this.printer.start();
 
+        System.out.println("Server started...");
+
         try {
             while (true) {
                 Socket socket = server.accept();

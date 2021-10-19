@@ -80,6 +80,7 @@ public class Client {
         try {
             this.socket = new Socket(addr, port);
             startServices();
+            System.out.println("Client started...");
         } catch (IOException e) {
             throw new Error("Client initialization failed", e);
         }
