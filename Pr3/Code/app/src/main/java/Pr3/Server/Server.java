@@ -16,7 +16,6 @@ import Pr3.Server.Services.Reader;
 public class Server {
 
     private Thread printer;
-    private ExecutorService clients;
 
     Server(int port) {
 
@@ -50,7 +49,7 @@ public class Server {
                 throw new Error("Can't down server", e);
             }
             this.printer.interrupt();
-            this.clients.shutdown();
+            clients.shutdown();
         }
     }
 

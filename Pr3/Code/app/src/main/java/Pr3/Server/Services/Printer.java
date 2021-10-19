@@ -33,14 +33,20 @@ public class Printer implements Runnable {
         while (!Thread.interrupted()) {
             try {
                 Thread.sleep(5000);
-            } catch (InterruptedException ignore) {}
+            } catch (InterruptedException ignore) {
+                System.out.println("Printer::run Sleep problem");
+            }
 
             List<String> messages = MessageBuffer.injectMessages();
 
-            if (messages.size() == 0)
+            if (messages.size() == 0) {
+                System.out.println("No messages");
                 continue;
+            }
 
-            var res = messages.stream().collect(Collectors.joining("\n"));
+            var res = "--------------New Messages--------------\n" + 
+                      messages.stream().collect(Collectors.joining("\n")) + "\n" +
+                      "----------------------------------------\n";
 
             synchronized (consumers) {
                 var consumersCopy = consumers;

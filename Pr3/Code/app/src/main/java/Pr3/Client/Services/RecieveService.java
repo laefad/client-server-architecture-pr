@@ -10,13 +10,11 @@ import Pr3.Client.Client;
 
 public class RecieveService implements Runnable {
 
-    private BufferedWriter out;
     private BufferedReader in;
     private Client client;
 
     public RecieveService(Client client) throws IOException{
         this.client = client;
-        this.out = client.getOutput();
         this.in = new BufferedReader(new InputStreamReader(client.getSocket().getInputStream()));
     }
 
@@ -30,8 +28,7 @@ public class RecieveService implements Runnable {
                     client.stopTransmitter();
                     break;
                 }
-                out.write(str + "\n");
-                out.flush();
+                System.out.println(str);
             } catch (IOException ignore) {}
         }
     }
