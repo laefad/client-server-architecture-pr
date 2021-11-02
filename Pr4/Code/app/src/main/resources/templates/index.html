@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket</title>
+    <link href="/style.css" rel="stylesheet">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+
+<div id="main">
+    <div class="column">
+        <form class="row">
+            <span for="connect">
+                Соединение с веб-сокетом:
+            </span>
+            <button id="connect" type="submit">
+                Подключиться
+            </button>
+            <button id="disconnect" type="submit" disabled="disabled">
+                Отключиться
+            </button>
+        </form>
+        <form class="row">
+            <label for="value">
+                Сообщение: 
+            </label>
+            <input type="text" id="value" placeholder="Введите текст...">
+            <button id="send" type="submit">
+                Отправить
+            </button>
+        </form>
+    </div>
+    <div id="messages" class="column">
+        <h1>Сообщения</h1>
+    </table>
+</div>
+</body>
+</html>
