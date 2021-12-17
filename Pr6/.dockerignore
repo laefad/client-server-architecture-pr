@@ -1,0 +1,12 @@
+.git
+
+# ignore gradle
+.gradle
+gradle/**/*
+gradle
+
+# gradle build
+./*/build/**/*
+./*/build
+buildSrc
+buildSrc/**/*

@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  books-service:
+    container_name: pr6-books-service
+    build:
+      context: .
+      target: prod
+      dockerfile: ./books-service/Dockerfile
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      POSTGRESBD_USERNAME: $POSTGRESBD_USERNAME
+      POSTGRESBD_PASSWORD: $POSTGRESBD_PASSWORD
+      POSTGRESBD_URL: $POSTGRESBD_URL
+    depends_on:
+      postgres:
+        condition: service_started
+
+  postgres:
+    container_name: pr6-postgres
+    image: postgres:latest
+    volumes: 
+      - ./postgres:/docker-entrypoint-initdb.d
+      - pr6-postgres-source:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: $POSTGRESBD_USERNAME
+      POSTGRES_PASSWORD: $POSTGRESBD_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+      PGPASSWORD: $POSTGRESBD_PASSWORD
+
+volumes:
+  pr6-postgres-source:
+    name: pr6-postgres-source
+  
+    

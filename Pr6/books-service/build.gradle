@@ -1,0 +1,40 @@
+
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'io.freefair.lombok'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+    maven { 
+        url 'https://repo.spring.io/plugins-release' 
+    }
+}
+
+group = 'com.laefad'
+version = '0.0.1'
+
+dependencies {
+    implementation 'org.projectlombok:lombok'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // DATABASE
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+
+    //GRAPHQL 
+    implementation 'org.springframework.experimental:graphql-spring-boot-starter:1.0.0-M3'
+    implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
+    implementation 'com.graphql-java:graphql-java-extended-scalars:17.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+application {
+    mainClass = 'book_service.BookServiceApp'
+}

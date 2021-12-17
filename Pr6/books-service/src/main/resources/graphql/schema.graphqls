@@ -1,0 +1,158 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type UserBookDetails {
+    username: String!
+    books: [Book!]
+    tagLists: [TagList!]
+}
+
+type TagList {
+    userBookDetails: UserBookDetails!
+    book: Book!
+    tags: [Tag!]
+}
+
+type Author {
+    id: ID!
+    name: String!
+    surname: String!
+    middlename: String
+    description: String
+    birthDate: Date
+    deathDate: Date
+    books: [Book!]
+}
+
+type Book {
+    id: ID!
+    name: String!
+    description: String
+    publicationDate: Date
+    authors: [Author!]
+    usersBookDetails: [UserBookDetails!]!
+    tagLists: [TagList!]
+    tags: [Tag!]
+}
+
+type Tag {
+    id: ID!
+    name: String!
+}
+
+input TagCreateInput {
+    name: String!
+}
+
+input BookCreateInput {
+    username: String!
+    name: String!
+    description: String
+    publicationDate: Date
+    authorIds: [ID!]
+    tagIds: [ID!]
+}
+
+input BookAddToUserInput {
+    username: String!
+    bookId: ID!
+}
+
+input BookRemoveFromUserInput {
+    username: String!
+    bookId: ID!
+}
+
+input BookAuthorAddInput {
+    bookId: ID!
+    authorId: ID!
+}
+
+input BookAuthorRemoveInput {
+    bookId: ID!
+    authorId: ID!
+}
+
+input BookTagAddInput {
+    bookId: ID!
+    tagId: ID!
+}
+
+input BookTagRemoveInput {
+    bookId: ID!
+    tagId: ID!
+}
+
+input AuthorCreateInput {
+    name: String!
+    surname: String!
+    middlename: String
+    description: String
+    birthDate: Date
+    deathDate: Date
+    bookIds: [ID!]
+}
+
+input TagListAddInput {
+    username: String!
+    bookId: ID!
+    tagId: ID!
+}
+
+input TagListRemoveInput {
+    username: String!
+    bookId: ID!
+    tagId: ID!
+}
+
+type Query {
+    # TAG 
+    getTag(tagId: ID!): Tag
+    getAllTags: [Tag!]
+
+    # BOOK 
+    getBook(bookId: ID!): Book
+    getAllBooks: [Book!]
+
+    # AUTHOR
+    getAuthor(authorId: ID!): Author
+    getAllAuthors: [Author!]
+
+    # USER_BOOK_DETAILS
+    getUserBookDetails(username: String!): UserBookDetails
+    getAllUserBookDetails: [UserBookDetails!]
+}
+
+type Mutation {
+    # TAG
+    createTag(input: TagCreateInput!): Tag
+    deleteTag(tagId: ID!): Tag
+    # changeTagName
+
+    # BOOK
+    createBook(input: BookCreateInput!): Book
+    deleteBook(bookId: ID!): Book
+    addAuthorToBook(input: BookAuthorAddInput!): Book
+    removeAuthorFromBook(input: BookAuthorRemoveInput!): Book
+    addTagToBook(input: BookTagAddInput!): Book
+    removeTagFromBook(input: BookTagRemoveInput!): Book
+    # TODO add book changes
+
+    # AUTHOR
+    createAuthor(input: AuthorCreateInput!): Author
+    deleteAuthor(authorId: ID!): Author
+    # TODO add author changes
+
+    # USER_BOOK_DETAILS
+    deleteUserBookDetails(username: String!): UserBookDetails
+    addBookToUser(input: BookAddToUserInput!): UserBookDetails
+    removeBookFromUser(input: BookRemoveFromUserInput!): UserBookDetails
+
+    # USER_TAG_LIST
+    addUserTagToBook(input: TagListAddInput!): TagList
+    removeUserTagFromBook(input: TagListRemoveInput!): TagList
+}
+
+scalar Date

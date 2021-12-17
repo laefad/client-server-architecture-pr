@@ -1,0 +1,27 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+#Gradle
+.gradle/
+build/
+buildSrc/
+
+# Eclipse
+**/*.project
+**/*.classpath
+**/*.settings
+
+#??
+bin/
+
+#temp files 
+temp/
