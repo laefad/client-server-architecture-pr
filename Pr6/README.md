@@ -1,3 +1,5 @@
+Graphiql: http://localhost:8000/graphiql
+
 Example queries and mutations 
 
     query getTags {
