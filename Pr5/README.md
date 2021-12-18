@@ -1,0 +1,1 @@
+Код для проекта расположен здесь https://github.com/laefad/project.
